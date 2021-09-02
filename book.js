@@ -38,9 +38,3 @@ const displaySearchResult = docs => {
     })
 }
 
-const loadBookDetail = key => {
-    const url = `https://openlibrary.org/search.json?q=${text}`;
-    fetch(url)
-        .then(res => res.json())
-        .then(data => console.log(data.docs[0]))
-}

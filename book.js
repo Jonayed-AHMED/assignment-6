@@ -1,17 +1,27 @@
+
 const searchBook = () => {
+
+
     const searchField = document.getElementById('search-field');
     const searchText = searchField.value;
-    // console.log(searchText);
+
+    // empty field's messege
+
+    if (searchText === "") {
+        const errorDiv = document.getElementById('error');
+        errorDiv.innerText = "Please, write a book name.";
+        return;
+    }
 
     // clear data
+    
     searchField.value = '';
 
     // load data
 
-    // const url = `https://openlibrary.org/search.json?q=${searchText}`;
     fetch(`https://openlibrary.org/search.json?q=${searchText}`)
         .then(res => res.json())
-        .then(data => displaySearchResult(data.docs));
+        .then(data => displaySearchResult(data.docs.slice(0, 30)));
 
 }
 const displaySearchResult = docs => {
@@ -35,6 +45,6 @@ const displaySearchResult = docs => {
         `;
         searchResult.appendChild(div);
 
-    })
+    });
 }
 
